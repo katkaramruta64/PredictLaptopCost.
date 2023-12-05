@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>laptop-price-prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+    <style>
+      /* Global Styles */
+      body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f8f9fa;
+          color: #343a40;
+          margin: 0;
+          padding: 0;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+          background: linear-gradient(to right, #007BFF, #00BFFF);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+          color: #fff;
+          font-size: 1.8rem;
+          transition: color 0.3s ease;
+      }
+
+      .navbar-brand:hover {
+          color: #cce5ff;
+      }
+
+      .navbar-toggler-icon {
+          background-color: #fff;
+      }
+
+      .navbar-toggler {
+          border-color: #fff;
+      }
+
+      /* Content Container Styling */
+      .container {
+          margin-top: 20px;
+          background-color: #fff;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          transition: box-shadow 0.3s ease;
+      }
+
+      .container:hover {
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Section Headings */
+      h1 {
+          color: #007BFF;
+          margin-bottom: 20px;
+      }
+
+      /* List Styling */
+      ul {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      /* Form Styling */
+      form {
+          margin-top: 20px;
+      }
+
+      /* Form Input Styling */
+      .form-control {
+          margin-bottom: 10px;
+          border-radius: 4px;
+      }
+
+      /* Button Styling */
+      .btn-success {
+          background-color: #28a745;
+          border-color: #28a745;
+          padding: 10px 20px;
+          border-radius: 4px;
+          font-size: 1rem;
+      }
+
+      .btn-success:hover {
+          background-color: #218838;
+          border-color: #218838;
+      }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">PredictLaptopCost</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/laptop-price">Laptop Price Prediction</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-3">
+        <h1>Laptop Price Prediction Project</h1>
+        <ul>
+          <li>Brand</li>
+          <li> Processor Brand</li>
+          <li>Processor Name</li>
+          <li>Processor Generation</li>
+          <li>Ram GB</li>
+          <li>SSD</li>
+          <li>HDD</li>
+          <li>Touchscreen</li>
+          <li>Rating</li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <h1>Enter Value To Predict Laptop Price</h1>
+      <form action="/laptoppriceresult">
+        <div class="row mt-2">
+          <div class="col-3">
+            Brand
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="brand" required>
+              <option value="">Select Brand</option>
+              {% for brand in brands %}
+              <option value="{{ brand }}">{{ brand }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            Processor Brand
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="processor_brand" required>
+              <option value="">Select Name</option>
+              {% for processor_brand in processor_brand %}
+              <option value="{{ processor_brand }}">{{ processor_brand }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            processor_name
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="processor_name" required>
+              <option value="">Select processor_name</option>
+              {% for processor_name in processor_names %}
+              <option value="{{ processor_name }}">{{ processor_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            processor_gnrtn
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="processor_gnrtn" required>
+              <option value="">Select processor_gnrtn</option>
+              {% for processor_gnrtn in processor_gnrtns %}
+              <option value="{{ processor_gnrtn }}">{{ processor_gnrtn }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            Ram GB
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="ram_gb" required>
+              <option value="">Select ram_gb</option>
+              {% for ram_gb in ram_gb %}
+              <option value="{{ ram_gb }}">{{ ram_gb }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            ssd
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="ssd" required>
+              <option value="">Select ssd</option>
+              {% for ssd in ssds %}
+              <option value="{{ ssd }}">{{ ssd }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            HDD
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="hdd" required>
+              <option value="">Select hdd</option>
+              {% for hdd in hdd %}
+              <option value="{{ hdd }}">{{ hdd }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            Touchscreen
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="Touchscreen" required>
+              <option value="">Select Touchscreen</option>
+              {% for Touchscreen in Touchscreen %}
+              <option value="{{ Touchscreen }}">{{ Touchscreen }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            Rating
+          </div>
+          <div class="col-9">
+            <select class="form-control" name="rating" required>
+              <option value="">Select rating</option>
+              {% for rating in rating %}
+              <option value="{{ rating }}">{{ rating }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3"></div>
+          <div class="col-9">
+            <input type="submit" value="Predict" class="btn btn-success" />
+          </div>
+        </div>
+
+
+      </form>
+
+
+   
+</body>
+
+</html>
